@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "ventura:bat_guano",
+    "ventura:sulfur",
+    "minecraft:charcoal"
+  ],
+  "result": {
+    "id": "minecraft:gunpowder"
+  }
+}

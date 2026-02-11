@@ -1,0 +1,11 @@
+// 26.1-snapshot-4	2026-02-11T01:19:36.5840102	Model Definitions - ventura
+7ec84c3b88ada31358aebc9473203fecab3c4064 assets/ventura/blockstates/aging_barrel.json
+f52181ca76e9b4a7b71f24068bc44ec8ff5e899e assets/ventura/items/ageable_item.json
+200486e4d11adbe72b3a9f8c76df641cd88bf931 assets/ventura/items/aging_barrel.json
+b5bbc07341e0a7b25397931dee922bab85e505ce assets/ventura/items/bat_guano.json
+1588d2fb65ac72234f36dbf3e2de0d7bae149a2a assets/ventura/items/cocaine.json
+a36fe38c9c9ae0af38d9b62d7712f741d3977cc4 assets/ventura/items/sulfur.json
+e00bd8d2a5b43e406e651666fdd965b8a4d8510d assets/ventura/models/item/ageable_item.json
+c357a039534b170186f394bce3b6eaed38939ba8 assets/ventura/models/item/bat_guano.json
+7793b816c96942dd68bdd0d2344de6b011bbc37a assets/ventura/models/item/cocaine.json
+e226c50c22cb30e84514501da2b8bf4e14e0186a assets/ventura/models/item/sulfur.json

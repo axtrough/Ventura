@@ -1,0 +1,14 @@
+{
+  "cork_pulled": {
+    "subtitle": "sounds.ventura.cork_pulled",
+    "sounds": [
+      "ventura:cork_pulled"
+    ]
+  },
+  "tap_added": {
+    "subtitle": "sounds.ventura.tap_added",
+    "sounds": [
+      "ventura:tap_added"
+    ]
+  }
+}
