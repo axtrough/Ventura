@@ -17,7 +17,8 @@ public class VCreativeTab {
             .icon(() -> new ItemStack(ItemStack.EMPTY.getItem()))
             .title(Component.translatable("itemGroup.ventura_tab"))
             .displayItems((parameters, output) -> {
-
+                output.accept(VBlocks.AGING_BARREL);
+                output.accept(VItems.AGEABLE_ITEM);
 
                     }).build());
 

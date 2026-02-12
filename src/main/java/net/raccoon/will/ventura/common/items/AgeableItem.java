@@ -6,6 +6,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
+import net.raccoon.will.ventura.common.data.AgeableItemData;
 import net.raccoon.will.ventura.registry.VComponents;
 
 import java.util.function.Consumer;
@@ -32,12 +33,14 @@ public class AgeableItem extends Item {
         }
     }
 
-    private static int getAgeTime(ItemStack stack) {
-        return stack.getOrDefault(VComponents.TIME_AGED.get(), 0);
+    public static int getAgeTime(ItemStack stack) {
+        AgeableItemData data = stack.get(VComponents.AGEABLE_ITEM_DATA.get());
+        return data != null ? data.ticks_aged() : 0;
     }
 
     public static void setAgeTime(ItemStack stack, int value) {
-        stack.set(VComponents.TIME_AGED.get(), value);
+        AgeableItemData data = new AgeableItemData(value, null);
+        stack.set(VComponents.AGEABLE_ITEM_DATA.get(), data);
     }
 }
 

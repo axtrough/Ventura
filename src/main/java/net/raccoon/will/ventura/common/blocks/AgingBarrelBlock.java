@@ -35,13 +35,11 @@ import java.util.Map;
 
 import static net.raccoon.will.ventura.registry.VBlockEntities.AGING_BARREL_BE;
 
-@SuppressWarnings("deprecated")
 public class AgingBarrelBlock extends BaseEntityBlock {
     public static final MapCodec<AgingBarrelBlock> CODEC = simpleCodec(AgingBarrelBlock::new);
+    public static final BooleanProperty TAPPED = BooleanProperty.create("tapped");
     private static final Map<Direction, VoxelShape> SHAPES;
     public static final EnumProperty<Direction> FACING;
-    public static final BooleanProperty TAPPED = BooleanProperty.create("tapped");
-
 
     public AgingBarrelBlock(Properties properties) {
         super(properties);
@@ -55,19 +53,18 @@ public class AgingBarrelBlock extends BaseEntityBlock {
 
         if (clickedDirection == state.getValue(FACING)) { // always get the front face of the block
 
-            if (!state.getValue(TAPPED) && player.isHolding(Items.COPPER_INGOT)) {
-                level.setBlockAndUpdate(pos, state.setValue(TAPPED, true)); // change to tapped model
+            if (!state.getValue(TAPPED) && player.isHolding(Items.COPPER_INGOT)) { // add tap / remove cork
+                level.setBlockAndUpdate(pos, state.setValue(TAPPED, true));
                 level.playLocalSound(pos, VSounds.TAP_ADDED.get(), SoundSource.BLOCKS, 1, 1, false);
                 return InteractionResult.SUCCESS;
             }
 
-            if (state.getValue(TAPPED) && player.isHolding(Items.SHEARS)) {
-                level.setBlockAndUpdate(pos, state.setValue(TAPPED, false)); // change back to untapped model
+            if (state.getValue(TAPPED) && player.isHolding(Items.BIRCH_BUTTON)) { // remove tap / add cork
+                level.setBlockAndUpdate(pos, state.setValue(TAPPED, false));
                 level.playLocalSound(pos, VSounds.CORK_PULLED.get(), SoundSource.BLOCKS, 1, 1, false);
                 return InteractionResult.SUCCESS;
             }
         }
-
         // insert item
         if (blockEntity instanceof AgingBarrelBlockEntity barrel) {
             ItemStack held = player.getItemInHand(hand);

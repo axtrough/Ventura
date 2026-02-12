@@ -4,19 +4,19 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.util.ExtraCodecs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.raccoon.will.ventura.Ventura;
+import net.raccoon.will.ventura.common.data.AgeableItemData;
 
 import java.util.function.Supplier;
 
 public class VComponents {
     public static final DeferredRegister.DataComponents COMPONENTS = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, Ventura.MODID);
 
-    public static final Supplier<DataComponentType<Integer>> TIME_AGED = register("time_aged", ExtraCodecs.NON_NEGATIVE_INT, ByteBufCodecs.VAR_INT);
+    public static final Supplier<DataComponentType<AgeableItemData>> AGEABLE_ITEM_DATA = register("ageable_item_data"
+            , AgeableItemData.CODEC, AgeableItemData.STREAM_CODEC);
 
 
     private static <T> Supplier<DataComponentType<T>> register(
