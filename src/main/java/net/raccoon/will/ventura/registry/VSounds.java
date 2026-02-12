@@ -14,7 +14,9 @@ public class VSounds {
             DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, Ventura.MODID);
 
     public static Supplier<SoundEvent> CORK_PULLED = registerSoundEvent("cork_pulled");
-    public static Supplier<SoundEvent> TAP_ADDED = registerSoundEvent("tap_added");
+
+    public static Supplier<SoundEvent> BARREL_SEAL = registerSoundEvent("barrel_seal");
+    public static Supplier<SoundEvent> BARREL_TAP = registerSoundEvent("barrel_tap");
 
     private static Supplier<SoundEvent> registerSoundEvent(String name) {
         Identifier id = Ventura.resLoc(name);

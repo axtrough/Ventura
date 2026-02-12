@@ -11,7 +11,6 @@ import net.raccoon.will.ventura.registry.VComponents;
 
 import java.util.function.Consumer;
 
-@SuppressWarnings("deprecated")
 public class AgeableItem extends Item {
 
     public AgeableItem(Properties properties) {

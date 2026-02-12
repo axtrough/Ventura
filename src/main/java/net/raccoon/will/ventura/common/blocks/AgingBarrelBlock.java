@@ -12,7 +12,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -58,14 +61,14 @@ public class AgingBarrelBlock extends BaseEntityBlock {
                 // tap blockstate
                 if (!state.getValue(TAPPED) && player.isHolding(Items.COPPER_INGOT)) {
                     level.setBlockAndUpdate(pos, state.setValue(TAPPED, true));
-                    level.playLocalSound(pos, VSounds.TAP_ADDED.get(), SoundSource.BLOCKS, 1, 1, false);
+                    level.playLocalSound(pos, VSounds.BARREL_TAP.get(), SoundSource.BLOCKS, 1, 0.85f, false);
                     return InteractionResult.SUCCESS;
                 }
 
                 // cork blockstate
                 if (state.getValue(TAPPED) && player.isHolding(Items.BIRCH_BUTTON)) {
                     level.setBlockAndUpdate(pos, state.setValue(TAPPED, false));
-                    level.playLocalSound(pos, VSounds.CORK_PULLED.get(), SoundSource.BLOCKS, 1, 1, false);
+                    level.playLocalSound(pos, VSounds.BARREL_SEAL.get(), SoundSource.BLOCKS, 1, 1, false);
                     return InteractionResult.SUCCESS;
                 }
             }

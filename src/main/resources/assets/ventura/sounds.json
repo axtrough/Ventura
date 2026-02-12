@@ -5,10 +5,16 @@
       "ventura:cork_pulled"
     ]
   },
-  "tap_added": {
-    "subtitle": "sounds.ventura.tap_added",
+  "barrel_tap": {
+    "subtitle": "sounds.ventura.barrel.barrel_tap",
     "sounds": [
-      "ventura:tap_added"
+      "ventura:barrel_tap"
+    ]
+  },
+  "barrel_seal": {
+    "subtitle": "sounds.ventura.barrel.barrel_seal",
+    "sounds": [
+      "ventura:barrel_seal"
     ]
   }
 }
