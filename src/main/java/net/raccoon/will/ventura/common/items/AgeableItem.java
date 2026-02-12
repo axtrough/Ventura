@@ -39,7 +39,7 @@ public class AgeableItem extends Item {
     }
 
     public static void setAgeTime(ItemStack stack, int value) {
-        AgeableItemData data = new AgeableItemData(value, null);
+        AgeableItemData data = new AgeableItemData(value);
         stack.set(VComponents.AGEABLE_ITEM_DATA.get(), data);
     }
 }

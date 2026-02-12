@@ -50,30 +50,34 @@ public class AgingBarrelBlock extends BaseEntityBlock {
     protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         BlockEntity blockEntity = level.getBlockEntity(pos);
         Direction clickedDirection = hitResult.getDirection();
+        ItemStack held = player.getItemInHand(hand);
 
-        if (clickedDirection == state.getValue(FACING)) { // always get the front face of the block
-
-            if (!state.getValue(TAPPED) && player.isHolding(Items.COPPER_INGOT)) { // add tap / remove cork
-                level.setBlockAndUpdate(pos, state.setValue(TAPPED, true));
-                level.playLocalSound(pos, VSounds.TAP_ADDED.get(), SoundSource.BLOCKS, 1, 1, false);
-                return InteractionResult.SUCCESS;
-            }
-
-            if (state.getValue(TAPPED) && player.isHolding(Items.BIRCH_BUTTON)) { // remove tap / add cork
-                level.setBlockAndUpdate(pos, state.setValue(TAPPED, false));
-                level.playLocalSound(pos, VSounds.CORK_PULLED.get(), SoundSource.BLOCKS, 1, 1, false);
-                return InteractionResult.SUCCESS;
-            }
-        }
-        // insert item
         if (blockEntity instanceof AgingBarrelBlockEntity barrel) {
-            ItemStack held = player.getItemInHand(hand);
+            if (clickedDirection == state.getValue(FACING)) { // always get the front face of the block
+
+                // tap blockstate
+                if (!state.getValue(TAPPED) && player.isHolding(Items.COPPER_INGOT)) {
+                    level.setBlockAndUpdate(pos, state.setValue(TAPPED, true));
+                    level.playLocalSound(pos, VSounds.TAP_ADDED.get(), SoundSource.BLOCKS, 1, 1, false);
+                    return InteractionResult.SUCCESS;
+                }
+
+                // cork blockstate
+                if (state.getValue(TAPPED) && player.isHolding(Items.BIRCH_BUTTON)) {
+                    level.setBlockAndUpdate(pos, state.setValue(TAPPED, false));
+                    level.playLocalSound(pos, VSounds.CORK_PULLED.get(), SoundSource.BLOCKS, 1, 1, false);
+                    return InteractionResult.SUCCESS;
+                }
+            }
+
+            // insert item
             if (barrel.isEmpty() && held.is(VTags.Items.AGEABLE_ITEMS)) {
                 ItemStack insert = held.copyWithCount(1);
                 barrel.setTheItem(insert);
                 held.shrink(1);
                 return InteractionResult.SUCCESS;
             }
+
             // extract item
             if (held.isEmpty() && !barrel.isEmpty()) {
                 player.setItemInHand(hand, barrel.getTheItem());
@@ -83,6 +87,7 @@ public class AgingBarrelBlock extends BaseEntityBlock {
         }
         return InteractionResult.PASS;
     }
+
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntity) {

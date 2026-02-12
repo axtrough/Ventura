@@ -29,19 +29,18 @@ public class AgingBarrelBlockEntity extends BlockEntity implements ContainerSing
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, AgingBarrelBlockEntity blockEntity) {
-        if (level.isClientSide()) return;
         if (blockEntity.barrelItem.isEmpty()) return;
+        if (level.isClientSide()) return;
 
         ItemStack stack = blockEntity.getTheItem();
-
-        AgeableItemData data = stack.getOrDefault(VComponents.AGEABLE_ITEM_DATA.get(),
-                new AgeableItemData(0));
+        AgeableItemData data = stack.getOrDefault(VComponents.AGEABLE_ITEM_DATA.get(), new AgeableItemData(0));
 
         int newAge = data.ticks_aged() + 1;
 
-        //update aging every 5 sec.
+        stack.set(VComponents.AGEABLE_ITEM_DATA.get(), new AgeableItemData(newAge));
+
+        //update every 5 sec.
         if (newAge % 100 == 0) {
-            stack.set(VComponents.AGEABLE_ITEM_DATA.get(), new AgeableItemData(newAge));
             blockEntity.setChanged();
         }
     }
